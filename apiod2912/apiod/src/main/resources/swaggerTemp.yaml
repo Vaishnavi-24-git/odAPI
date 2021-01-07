@@ -1,0 +1,45 @@
+swagger: '2.0' #version of Swagger
+info: # High Level information of API
+  description: API-ON-DEMAND Demo #Give the description of API 
+  version: 1.0.0 #API version
+  title:  API-ON-DEMAND # API title
+  license: #Swagger license info
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+host: localhost # Host Name
+basePath: /v1 #Basepath when there are multiple versions of API running
+tags: # Tag information for each API operation. Multiple tags for multiple API operation
+  - name: Repository #Tag name
+    description: Everything about your Repository #Tag description of API operation
+schemes:
+  - http #security schemes
+paths:
+  '/findRepositoryDetails/{EmployeeId}': #Request Mapping path of REST API
+    get: #Request method type, GET,POST etc.
+      tags: # Refer to created tag above
+        - Repository
+      summary: Find Repository by ID #Summary 
+      description: Returns a single Repository #Description of API operation
+      operationId: getRepositoryDetails #Method name
+      produces:
+        - application/json #Response content type
+      parameters:
+        - name: EmployeeId #Input parameter
+          in: path #path variable
+          description: ID of Employee to return #description of parameter
+          required: true #Is mandatory
+          type: integer #data type
+          format: int64 #data type format, signed 64 bits
+      responses: # API response
+        '200': #Successful status code
+          description: successful operation #Successful status description
+          # schema:
+          #   $ref: '#/definitions/Repository' #Response object details
+        '400': #Unsuccessful response code
+          description: Invalid Repository ID supplied #Unsuccessful response description
+        '404': #Unsuccessful response code
+          description: Repository not found #Unsuccessful response description
+  
+     
+
+     #xml root element when returning xml
